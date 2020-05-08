@@ -11,12 +11,12 @@
 </head>
 
 <body>
-    </div id="app">
-    <router-link to="/">Home</router-link>
-    <router-link to="/about">About</router-link>
-    <router-view></router-view>
+    <div id="app">
+        <router-link to="/">Home</router-link>
+        <router-link to="/about">About</router-link>
+        <router-view></router-view>
     </div>
-    <script src="/resources/assets/js/app.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>
