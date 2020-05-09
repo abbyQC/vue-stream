@@ -1922,8 +1922,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log("Component mounted.");
+  mounted: function mounted() {//axios.
   }
 });
 
@@ -17642,7 +17641,8 @@ var routes = [{
   component: _views_About_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }];
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  routes: routes
+  routes: routes,
+  linkActiveClass: 'is-active'
 }));
 
 /***/ }),

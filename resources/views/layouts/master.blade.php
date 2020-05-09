@@ -12,9 +12,12 @@
 
 <body>
     <div id="app">
-        <router-link to="/">Home</router-link>
-        <router-link to="/about">About</router-link>
-        <router-view></router-view>
+        @include('layouts.header')
+        <section class="section">
+            <div class="container">
+                <router-view></router-view>
+            </div>
+        </section>
     </div>
     <script src="/js/app.js"></script>
 </body>

@@ -6,11 +6,16 @@ let routes = [
         path: '/',
         component: Home
     },
+
     {
         path: '/about',
         component: About
-    }
+    },
+
+
+
 ];
 export default new VueRouter({
-    routes
+    routes,
+    linkActiveClass: 'is-active'
 });
