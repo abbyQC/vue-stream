@@ -6,7 +6,7 @@
         <div class="message" v-for:="status in statuses">
           <div class="message-header">
             <p>{{status.user.name}} said..</p>
-            <p>A moment ago..</p>
+            <p>{{postedOn(status)}}</p>
           </div>
           <div class="message-body" v-text="status.body"></div>
         </div>
@@ -15,6 +15,7 @@
   </div>
 </template>
 <script>
+import moment from "moment";
 export default {
   data() {
     return {
@@ -23,6 +24,11 @@ export default {
   },
   created() {
     axios.get("/statuses").then(({ data }) => (this.statuses = data));
+  },
+  methods: {
+    postedOn(status) {
+      return moment(status.created_at).fromNow();
+    }
   }
 };
 </script>
