@@ -6,7 +6,7 @@
         <div class="message" v-for="status in statuses" v-bind:key="status.name">
           <div class="message-header">
             <p>{{status.user.name}} said..</p>
-            <p>{{postedOn(status)}}</p>
+            <p>{{status.created_at | ago | capitalize}}</p>
           </div>
           <div class="message-body" v-text="status.body"></div>
         </div>
@@ -23,14 +23,17 @@ export default {
       statuses: []
     };
   },
+  filters: {
+    ago(date) {
+      return moment.utc(date).fromNow();
+    },
+    capitalize(value) {
+      return value.toUpperCase();
+    }
+  },
   created() {
     //fire off an ajax request to a server to fetch all the statuses
     Status.all(statuses => (this.statuses = statuses));
-  },
-  methods: {
-    postedOn(status) {
-      return moment(status.created_at).fromNow();
-    }
   }
 };
 </script>
