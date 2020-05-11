@@ -10,7 +10,7 @@
           </div>
           <div class="message-body" v-text="status.body"></div>
         </div>
-        <add-to-stream></add-to-stream>
+        <add-to-stream @completed="addStatus"></add-to-stream>
       </div>
     </div>
   </div>
@@ -37,6 +37,13 @@ export default {
   created() {
     //fire off an ajax request to a server to fetch all the statuses
     Status.all(statuses => (this.statuses = statuses));
+  },
+  methods: {
+    addStatus(status) {
+      this.statuses.unshift(status);
+      alert("Your status has been added to the stream.");
+      window.scrollTo(0, 0);
+    }
   }
 };
 </script>

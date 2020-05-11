@@ -1923,18 +1923,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       form: new Form({
-        body: ''
+        body: ""
       })
     };
   },
   methods: {
     onSubmit: function onSubmit() {
-      this.form.post('/statuses').then(function (status) {
-        return alert('ALL DONE');
+      var _this = this;
+
+      this.form.post("/statuses").then(function (status) {
+        return _this.$emit("completed", status);
       });
     }
   }
@@ -2028,6 +2035,13 @@ __webpack_require__.r(__webpack_exports__);
     _models_Status__WEBPACK_IMPORTED_MODULE_1__["default"].all(function (statuses) {
       return _this.statuses = statuses;
     });
+  },
+  methods: {
+    addStatus: function addStatus(status) {
+      this.statuses.unshift(status);
+      alert("Your status has been added to the stream.");
+      window.scrollTo(0, 0);
+    }
   }
 });
 
@@ -23417,6 +23431,9 @@ var render = function() {
             submit: function($event) {
               $event.preventDefault()
               return _vm.onSubmit($event)
+            },
+            keydown: function($event) {
+              return _vm.form.errors.clear()
             }
           }
         },
@@ -23442,25 +23459,32 @@ var render = function() {
                   _vm.$set(_vm.form, "body", $event.target.value)
                 }
               }
-            })
+            }),
+            _vm._v(" "),
+            _vm.form.errors.has("body")
+              ? _c("span", {
+                  staticClass: "help is-danger",
+                  domProps: { textContent: _vm._s(_vm.form.errors.get("body")) }
+                })
+              : _vm._e()
           ]),
           _vm._v(" "),
-          _vm._m(0)
+          _c("p", { staticClass: "control" }, [
+            _c(
+              "button",
+              {
+                staticClass: "button is-primary",
+                attrs: { disabled: _vm.form.errors.any() }
+              },
+              [_vm._v("Submit")]
+            )
+          ])
         ]
       )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "control" }, [
-      _c("button", { staticClass: "button is-primary" }, [_vm._v("Submit")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -23552,7 +23576,7 @@ var render = function() {
             ])
           }),
           _vm._v(" "),
-          _c("add-to-stream")
+          _c("add-to-stream", { on: { completed: _vm.addStatus } })
         ],
         2
       )
