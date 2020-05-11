@@ -16,7 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/statuses', function () {
-    return App\Status::with('user')->latest()->get(); // fetch everything in the database
-
-});
+Route::get('/statuses', 'StatusController@index');
+Route::get('/statuses', 'StatusController@store');
