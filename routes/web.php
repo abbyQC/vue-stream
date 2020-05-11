@@ -16,5 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/statuses', 'StatusController@index');
-Route::get('/statuses', 'StatusController@store');
+
+Route::get('/statuses', 'StatusesController@index');
+
+Route::post('/statuses', 'StatusesController@store');
